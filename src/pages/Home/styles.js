@@ -1,12 +1,16 @@
 import styled from 'styled-components/native';
-import { Animated } from 'react-native';
+import { Animated, TouchableOpacity } from 'react-native';
+
+const AnimatedTouchableOpacity = Animated.createAnimatedComponent(
+  TouchableOpacity
+);
 
 export const Container = styled.View`
   flex: 1;
   align-items: center;
 `;
 
-export const Header = styled.TouchableOpacity`
+export const Header = styled(AnimatedTouchableOpacity)`
   margin-top: 80px;
   justify-content: center;
   align-items: center;
@@ -31,11 +35,14 @@ export const HeaderText = styled.Text`
   font-family: JuraBold;
 `;
 
-export const Content = styled(Animated.View)`
+export const Content = styled(Animated.ScrollView).attrs({
+  alwaysBounceVertical: false,
+})`
   background: #fff;
   flex: 1;
   align-self: stretch;
   margin-top: 20px;
   border-radius: 30px;
   z-index: 5;
+  padding-top: 30px;
 `;

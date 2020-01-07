@@ -5,7 +5,14 @@ import * as Font from 'expo-font';
 
 import logo from '~/../assets/logo.png';
 
+import api from '~/services/api';
+
+import format from '~/util/question';
+
+import List from '~/components/List';
 import Background from '~/components/Background';
+
+import Question from '~/components/Question';
 
 import {
   Container,
@@ -18,6 +25,8 @@ import {
 
 export default function Home() {
   const [fontLoaded, setFontLoaded] = useState(false);
+  const [questions, setQuestions] = useState([]);
+  const [experienceQuestions, setExperienceQuestions] = useState([]);
   let opened = false;
 
   const translateY = new Animated.Value(0);
@@ -29,14 +38,35 @@ export default function Home() {
   useEffect(() => {
     async function loadFont() {
       await Font.loadAsync({
+        Jura: require('../../../assets/fonts/Jura.ttf'),
         JuraBold: require('../../../assets/fonts/Jura-Bold.ttf'),
       });
 
       setFontLoaded(true);
     }
 
+    async function loadQuestions() {
+      const response = await api.get('/problems/v1/summary');
+
+      const data = response.data.Problems.map(question => ({
+        ...question,
+        info: format(question),
+      }));
+
+      setQuestions(data);
+    }
+
     loadFont();
+    loadQuestions();
   }, []);
+
+  useEffect(() => {
+    const data = questions
+      .filter(question => question.Difficulty === 1)
+      .sort(question => !question.Available);
+
+    setExperienceQuestions(data);
+  }, [questions]);
 
   function handleGreetingsPress() {
     opened = !opened;
@@ -87,7 +117,17 @@ export default function Home() {
                   },
                 ],
               }}
-            />
+            >
+              <List
+                data={experienceQuestions}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                keyExtractor={item => item.Name}
+                renderItem={({ item }) => <Question question={item} />}
+                title="Questions"
+                subtitle="Based on your experience"
+              />
+            </Content>
           </>
         ) : null}
       </Container>
