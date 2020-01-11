@@ -48,4 +48,5 @@ export const Content = styled(Animated.ScrollView).attrs({
   border-radius: 30px;
   flex: 1;
   padding-top: ${props => (props.noHeader ? '50px' : '30px')};
+  z-index: 5;
 `;

@@ -11,13 +11,14 @@ import api from '~/services/api';
 import format from '~/util/question';
 import formatCategory from '~/util/category';
 
-import List from '~/components/List';
 import Background from '~/components/Background';
+import List from '~/components/List';
 import Loading from '~/components/Loading';
 import Question from '~/components/Question';
 import Categories from '~/components/Categories';
 import Datastructure from '~/components/Datastructure';
 import Tips from '~/components/Tips';
+import Menu from '~/components/Menu';
 
 import {
   Container,
@@ -193,7 +194,7 @@ export default function Home() {
               renderItem={({ item }) => <Question question={item} />}
               title="Questions"
               subtitle="Based on your experience"
-              close={!noHeader}
+              close={noHeader}
               setNoHeader={handleClose}
               closeOpacity={noHeaderAnimatedValues.interpolate({
                 inputRange: [0, 50],
@@ -230,6 +231,7 @@ export default function Home() {
                 : noHeaderAnimatedValues,
             }}
             onPress={handleGreetingsPress}
+            disabled={noHeader}
           >
             <HeaderGreeting>
               <HeaderLogo
@@ -263,6 +265,8 @@ export default function Home() {
               color="#fff"
             />
           </Header>
+
+          <Menu />
         </Container>
       ) : (
         <Loading />

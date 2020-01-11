@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 export const Container = styled.View`
   margin-left: 20px;
   margin-right: 20px;
-  margin-bottom: 240px;
+  margin-bottom: 210px;
 `;
 
 export const Title = styled.View`

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -30,13 +31,15 @@ export default function List({
           {subtitle && <Subtitle>{subtitle}</Subtitle>}
         </Left>
 
-        <CloseButton
-          disabled={close}
-          style={{ opacity: closeOpacity }}
-          onPress={setNoHeader}
-        >
-          <MaterialCommunityIcons name="close" size={30} />
-        </CloseButton>
+        {close && (
+          <CloseButton
+            disabled={!close}
+            style={{ opacity: closeOpacity }}
+            onPress={setNoHeader}
+          >
+            <MaterialCommunityIcons name="close" size={30} />
+          </CloseButton>
+        )}
       </Title>
 
       <StyledList {...rest} ListFooterComponent={<FinalComponent />} />

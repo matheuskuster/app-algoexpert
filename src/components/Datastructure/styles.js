@@ -2,9 +2,9 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View`
   background: #001e3f;
-  margin-right: 30px;
-  max-width: 370px;
+  width: 370px;
   border-radius: 6px;
+  margin-right: 25px;
 `;
 
 export const Thumbnail = styled.ImageBackground`
