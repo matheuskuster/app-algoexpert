@@ -36,12 +36,13 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [fontLoaded, setFontLoaded] = useState(false);
   const [noHeader, setNoHeader] = useState(false);
-  const [menuOpened, setMenuOpened] = useState(false);
 
   const translateY = new Animated.Value(0);
   const noHeaderAnimatedValues = new Animated.Value(50);
   const scrollY = new Animated.Value(0);
   const opacity = new Animated.Value(0);
+
+  let opened = useMemo(() => false, []);
 
   const AnimatedChevron = Animated.createAnimatedComponent(
     MaterialCommunityIcons
@@ -127,10 +128,12 @@ export default function Home() {
   }, [loading, fontLoaded]); //eslint-disable-line
 
   function handleGreetingsPress() {
+    opened = !opened;
+
     Animated.spring(translateY, {
-      toValue: !menuOpened ? 1 : 0,
-      bounciness: !menuOpened ? 8 : 2,
-    }).start(() => setMenuOpened(!menuOpened));
+      toValue: opened ? 1 : 0,
+      bounciness: opened ? 8 : 2,
+    }).start();
   }
 
   function handleScroll(event) {
@@ -141,7 +144,6 @@ export default function Home() {
       noHeaderAnimatedValues.setValue(0);
     }
 
-    scrollY.setOffset(offset);
     scrollY.setValue(offset);
   }
 
@@ -161,7 +163,7 @@ export default function Home() {
                 {
                   translateY: translateY.interpolate({
                     inputRange: [0, 1],
-                    outputRange: [0, 500],
+                    outputRange: [0, 700],
                   }),
                 },
               ],
@@ -191,8 +193,12 @@ export default function Home() {
               renderItem={({ item }) => <Question question={item} />}
               title="Questions"
               subtitle="Based on your experience"
-              close={noHeader}
+              close={!noHeader}
               setNoHeader={handleClose}
+              closeOpacity={noHeaderAnimatedValues.interpolate({
+                inputRange: [0, 50],
+                outputRange: [1, 0],
+              })}
             />
 
             {categories && <Categories data={categories} />}

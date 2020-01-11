@@ -19,6 +19,7 @@ export default function List({
   disabled,
   close,
   setNoHeader,
+  closeOpacity,
   ...rest
 }) {
   return (
@@ -29,11 +30,13 @@ export default function List({
           {subtitle && <Subtitle>{subtitle}</Subtitle>}
         </Left>
 
-        {close && (
-          <CloseButton onPress={setNoHeader}>
-            <MaterialCommunityIcons name="close" size={30} />
-          </CloseButton>
-        )}
+        <CloseButton
+          disabled={close}
+          style={{ opacity: closeOpacity }}
+          onPress={setNoHeader}
+        >
+          <MaterialCommunityIcons name="close" size={30} />
+        </CloseButton>
       </Title>
 
       <StyledList {...rest} ListFooterComponent={<FinalComponent />} />
