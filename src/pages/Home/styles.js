@@ -5,15 +5,20 @@ const AnimatedTouchableOpacity = Animated.createAnimatedComponent(
   TouchableOpacity
 );
 
-export const Container = styled.View`
+export const Container = styled(Animated.View)`
   flex: 1;
   align-items: center;
+  justify-content: center;
 `;
 
 export const Header = styled(AnimatedTouchableOpacity)`
-  margin-top: 80px;
   justify-content: center;
   align-items: center;
+
+  position: absolute;
+  top: 80;
+  left: 0;
+  right: 0;
 `;
 
 export const HeaderGreeting = styled.View`
@@ -22,7 +27,7 @@ export const HeaderGreeting = styled.View`
   margin-bottom: 1px;
 `;
 
-export const HeaderLogo = styled.Image`
+export const HeaderLogo = styled(Animated.Image)`
   height: 50px;
   width: 45px;
 `;
@@ -36,13 +41,11 @@ export const HeaderText = styled.Text`
 `;
 
 export const Content = styled(Animated.ScrollView).attrs({
-  alwaysBounceVertical: false,
+  showsVerticalScrollIndicator: false,
 })`
   background: #fff;
-  flex: 1;
   align-self: stretch;
-  margin-top: 20px;
   border-radius: 30px;
-  z-index: 5;
-  padding-top: 30px;
+  flex: 1;
+  padding-top: ${props => (props.noHeader ? '50px' : '30px')};
 `;

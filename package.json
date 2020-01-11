@@ -20,6 +20,7 @@
     "expo-font": "~8.0.0",
     "expo-linear-gradient": "~8.0.0",
     "immer": "^5.1.0",
+    "lottie-react-native": "~2.6.1",
     "polished": "^3.4.2",
     "prop-types": "^15.7.2",
     "react": "~16.9.0",

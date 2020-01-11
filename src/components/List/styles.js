@@ -2,9 +2,15 @@ import styled from 'styled-components/native';
 
 export const Container = styled.View``;
 
-export const Title = styled.TouchableOpacity`
+export const Left = styled.TouchableOpacity`
   justify-content: center;
-  margin-left: 20px;
+`;
+
+export const Title = styled.TouchableOpacity`
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin: 0 20px;
 `;
 
 export const TitleText = styled.Text`
@@ -30,4 +36,10 @@ export const StyledList = styled.FlatList`
 
 export const FinalComponent = styled.View`
   padding-right: 20px;
+`;
+
+export const CloseButton = styled.TouchableOpacity`
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
 `;

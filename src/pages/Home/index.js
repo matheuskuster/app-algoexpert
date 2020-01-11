@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { Animated } from 'react-native';
+
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import * as Font from 'expo-font';
 
@@ -8,11 +9,15 @@ import logo from '~/../assets/logo.png';
 import api from '~/services/api';
 
 import format from '~/util/question';
+import formatCategory from '~/util/category';
 
 import List from '~/components/List';
 import Background from '~/components/Background';
-
+import Loading from '~/components/Loading';
 import Question from '~/components/Question';
+import Categories from '~/components/Categories';
+import Datastructure from '~/components/Datastructure';
+import Tips from '~/components/Tips';
 
 import {
   Container,
@@ -24,12 +29,19 @@ import {
 } from './styles';
 
 export default function Home() {
-  const [fontLoaded, setFontLoaded] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [experienceQuestions, setExperienceQuestions] = useState([]);
-  let opened = false;
+  const [categories, setCategories] = useState(null);
+  const [dataStructures, setDataStructures] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [fontLoaded, setFontLoaded] = useState(false);
+  const [noHeader, setNoHeader] = useState(false);
+  const [menuOpened, setMenuOpened] = useState(false);
 
   const translateY = new Animated.Value(0);
+  const noHeaderAnimatedValues = new Animated.Value(50);
+  const scrollY = new Animated.Value(0);
+  const opacity = new Animated.Value(0);
 
   const AnimatedChevron = Animated.createAnimatedComponent(
     MaterialCommunityIcons
@@ -45,92 +57,210 @@ export default function Home() {
       setFontLoaded(true);
     }
 
-    async function loadQuestions() {
+    loadFont();
+  }, []);
+
+  useEffect(() => {
+    async function fetchData() {
+      setLoading(true);
       const response = await api.get('/problems/v1/summary');
+      const categoriesDraft = {};
 
       const data = response.data.Problems.map(question => ({
         ...question,
         info: format(question),
       }));
 
+      response.data.Problems.forEach(question => {
+        if (categoriesDraft[question.Category]) {
+          categoriesDraft[question.Category].questions.push(question);
+        } else {
+          categoriesDraft[question.Category] = {
+            questions: [],
+            icon: formatCategory(question.Category),
+          };
+
+          categoriesDraft[question.Category].questions.push(question);
+        }
+      });
+
+      setCategories(categoriesDraft);
       setQuestions(data);
+
+      async function loadDataStructures() {
+        const dataStructuresResponse = await api.get(
+          'problems/v1/datastructures'
+        );
+
+        const formattedData = dataStructuresResponse.data.datastructures.map(
+          (datastructure, index) => ({
+            ...datastructure,
+            formattedThumbnail: datastructure.thumbnail_url.split('.webp')[0],
+            watched: index % 2 === 0,
+          })
+        );
+
+        setDataStructures(formattedData);
+        setLoading(false);
+      }
+
+      loadDataStructures();
     }
 
-    loadFont();
-    loadQuestions();
+    fetchData();
   }, []);
 
   useEffect(() => {
-    const data = questions
-      .filter(question => question.Difficulty === 1)
-      .sort(question => !question.Available);
+    const data = questions.sort(question => !question.Available);
 
     setExperienceQuestions(data);
   }, [questions]);
 
-  function handleGreetingsPress() {
-    opened = !opened;
+  useEffect(() => {
+    if (!loading && fontLoaded) {
+      Animated.timing(opacity, {
+        toValue: 1,
+        duration: 800,
+        delay: 200,
+      }).start();
+    }
+  }, [loading, fontLoaded]); //eslint-disable-line
 
+  function handleGreetingsPress() {
     Animated.spring(translateY, {
-      toValue: opened ? 1 : 0,
-      bounciness: opened ? 8 : 2,
-      useNativeDriver: true,
-    }).start();
+      toValue: !menuOpened ? 1 : 0,
+      bounciness: !menuOpened ? 8 : 2,
+    }).start(() => setMenuOpened(!menuOpened));
+  }
+
+  function handleScroll(event) {
+    const { y: offset } = event.nativeEvent.contentOffset;
+
+    if (offset >= 180) {
+      setNoHeader(true);
+      noHeaderAnimatedValues.setValue(0);
+    }
+
+    scrollY.setOffset(offset);
+    scrollY.setValue(offset);
+  }
+
+  function handleClose() {
+    Animated.spring(noHeaderAnimatedValues, {
+      toValue: 50,
+    }).start(() => setNoHeader(false));
   }
 
   return (
     <Background>
-      <Container>
-        {fontLoaded ? (
-          <>
-            <Header onPress={handleGreetingsPress}>
-              <HeaderGreeting>
-                <HeaderLogo source={logo} />
-                <HeaderText>Hi, Matheus</HeaderText>
-              </HeaderGreeting>
+      {fontLoaded && !loading ? (
+        <Container style={{ opacity }}>
+          <Content
+            style={{
+              transform: [
+                {
+                  translateY: translateY.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [0, 500],
+                  }),
+                },
+              ],
+              marginTop: !noHeader
+                ? scrollY.interpolate({
+                    inputRange: [0, 160],
+                    outputRange: [160, 0],
+                    extrapolate: 'clamp',
+                  })
+                : noHeaderAnimatedValues.interpolate({
+                    inputRange: [0, 50],
+                    outputRange: [0, 160],
+                  }),
+              paddingTop: noHeaderAnimatedValues.interpolate({
+                inputRange: [0, 50],
+                outputRange: [50, 30],
+              }),
+            }}
+            scrollEventThrottle={16}
+            onScroll={handleScroll}
+          >
+            <List
+              data={experienceQuestions}
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={item => item.Name}
+              renderItem={({ item }) => <Question question={item} />}
+              title="Questions"
+              subtitle="Based on your experience"
+              close={noHeader}
+              setNoHeader={handleClose}
+            />
 
-              <AnimatedChevron
+            {categories && <Categories data={categories} />}
+
+            <List
+              data={dataStructures}
+              horizontal
+              disabled
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={item => item.name}
+              renderItem={({ item, index }) => (
+                <Datastructure item={item} index={index} />
+              )}
+              title="Data Structures"
+              subtitle="The foundational knowledge you need."
+            />
+
+            <Tips />
+          </Content>
+
+          <Header
+            style={{
+              height: !noHeader
+                ? scrollY.interpolate({
+                    inputRange: [0, 50],
+                    outputRange: [50, 0],
+                    extrapolate: 'clamp',
+                  })
+                : noHeaderAnimatedValues,
+            }}
+            onPress={handleGreetingsPress}
+          >
+            <HeaderGreeting>
+              <HeaderLogo
                 style={{
-                  transform: [
-                    {
-                      rotate: translateY.interpolate({
-                        inputRange: [0, 1],
-                        outputRange: ['0deg', '180deg'],
-                      }),
-                    },
-                  ],
+                  height: !noHeader
+                    ? scrollY.interpolate({
+                        inputRange: [0, 50],
+                        outputRange: [50, 0],
+                        extrapolate: 'clamp',
+                      })
+                    : noHeaderAnimatedValues,
                 }}
-                name="chevron-down"
-                size={24}
-                color="#fff"
+                source={logo}
               />
-            </Header>
+              <HeaderText>Hi, Matheus</HeaderText>
+            </HeaderGreeting>
 
-            <Content
+            <AnimatedChevron
               style={{
                 transform: [
                   {
-                    translateY: translateY.interpolate({
+                    rotate: translateY.interpolate({
                       inputRange: [0, 1],
-                      outputRange: [0, 500],
+                      outputRange: ['0deg', '180deg'],
                     }),
                   },
                 ],
               }}
-            >
-              <List
-                data={experienceQuestions}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                keyExtractor={item => item.Name}
-                renderItem={({ item }) => <Question question={item} />}
-                title="Questions"
-                subtitle="Based on your experience"
-              />
-            </Content>
-          </>
-        ) : null}
-      </Container>
+              name="chevron-down"
+              size={24}
+              color="#fff"
+            />
+          </Header>
+        </Container>
+      ) : (
+        <Loading />
+      )}
     </Background>
   );
 }
