@@ -45,8 +45,9 @@ export const Content = styled(Animated.ScrollView).attrs({
 })`
   background: #fff;
   align-self: stretch;
-  border-radius: 30px;
+
   flex: 1;
   padding-top: ${props => (props.noHeader ? '50px' : '30px')};
   z-index: 5;
+  overflow: hidden;
 `;

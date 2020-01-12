@@ -140,7 +140,7 @@ export default function Home() {
   function handleScroll(event) {
     const { y: offset } = event.nativeEvent.contentOffset;
 
-    if (offset >= 180) {
+    if (offset >= 160) {
       setNoHeader(true);
       noHeaderAnimatedValues.setValue(0);
     }
@@ -182,6 +182,26 @@ export default function Home() {
                 inputRange: [0, 50],
                 outputRange: [50, 30],
               }),
+              borderTopStartRadius: !noHeader
+                ? scrollY.interpolate({
+                    inputRange: [0, 160],
+                    outputRange: [30, 0],
+                    extrapolate: 'clamp',
+                  })
+                : noHeaderAnimatedValues.interpolate({
+                    inputRange: [0, 50],
+                    outputRange: [0, 30],
+                  }),
+              borderTopEndRadius: !noHeader
+                ? scrollY.interpolate({
+                    inputRange: [0, 160],
+                    outputRange: [30, 0],
+                    extrapolate: 'clamp',
+                  })
+                : noHeaderAnimatedValues.interpolate({
+                    inputRange: [0, 50],
+                    outputRange: [0, 30],
+                  }),
             }}
             scrollEventThrottle={16}
             onScroll={handleScroll}
