@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState, useMemo } from 'react';
 import { Animated } from 'react-native';
 
@@ -29,7 +30,7 @@ import {
   Content,
 } from './styles';
 
-export default function Home() {
+export default function Home({ navigation, isFocused }) {
   const [questions, setQuestions] = useState([]);
   const [experienceQuestions, setExperienceQuestions] = useState([]);
   const [categories, setCategories] = useState(null);
@@ -286,7 +287,7 @@ export default function Home() {
             />
           </Header>
 
-          <Menu />
+          <Menu navigation={navigation} />
         </Container>
       ) : (
         <Loading />
@@ -294,3 +295,7 @@ export default function Home() {
     </Background>
   );
 }
+
+Home.navigationOptions = {
+  headerShown: false,
+};

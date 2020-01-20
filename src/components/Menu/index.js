@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import {
   Feather,
@@ -24,7 +25,7 @@ import {
   OptionText,
 } from './styles';
 
-export default function Menu() {
+export default function Menu({ navigation }) {
   const dispatch = useDispatch();
 
   return (
@@ -35,7 +36,7 @@ export default function Menu() {
       </OwnBox>
 
       <MenuOptions>
-        <Option>
+        <Option onPress={() => navigation.navigate('Help')}>
           <Left>
             <MaterialIcons
               name="help-outline"
