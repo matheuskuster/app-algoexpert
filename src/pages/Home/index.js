@@ -55,6 +55,8 @@ export default function Home({ navigation, isFocused }) {
       await Font.loadAsync({
         Jura: require('../../../assets/fonts/Jura.ttf'),
         JuraBold: require('../../../assets/fonts/Jura-Bold.ttf'),
+        OpenSans: require('../../../assets/fonts/OpenSans-Regular.ttf'),
+        OpenSansBold: require('../../../assets/fonts/OpenSans-Bold.ttf'),
       });
 
       setFontLoaded(true);
