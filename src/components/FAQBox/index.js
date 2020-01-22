@@ -73,7 +73,7 @@ export default function FAQBox({ topic }) {
       >
         {topic.questions.map(question => (
           <>
-            <Question>{question.question}</Question>
+            <Question key={question.question}>{question.question}</Question>
             <Answer>{question.answer}</Answer>
           </>
         ))}
