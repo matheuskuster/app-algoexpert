@@ -21,6 +21,7 @@ export const StyledInput = styled.TextInput.attrs({
   flex: 1;
   padding: 15px 10px;
   border-radius: 4px;
+  min-height: ${props => (props.multiline ? '160px' : '0px')};
 `;
 
 export const Border = styled(Animated.View)`

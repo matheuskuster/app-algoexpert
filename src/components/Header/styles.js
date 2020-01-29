@@ -10,7 +10,7 @@ export const Title = styled.Text`
   font-weight: bold;
 
   margin-top: 40px;
-  margin-left: 15px;
+  margin-left: 8px;
   font-family: OpenSansBold;
   color: #02203c;
 `;
