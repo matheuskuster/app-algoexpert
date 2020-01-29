@@ -1,5 +1,5 @@
 import React from 'react';
-import { Animated } from 'react-native';
+import { Animated, View } from 'react-native';
 
 import {
   Container,
@@ -72,10 +72,10 @@ export default function FAQBox({ topic }) {
         }}
       >
         {topic.questions.map(question => (
-          <>
-            <Question key={question.question}>{question.question}</Question>
+          <View key={question.question}>
+            <Question>{question.question}</Question>
             <Answer>{question.answer}</Answer>
-          </>
+          </View>
         ))}
       </QuestionsBox>
     </Container>
