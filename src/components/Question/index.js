@@ -3,7 +3,7 @@ import React from 'react';
 
 import { Container, Difficulty, Name } from './styles';
 
-export default function Question({ question }) {
+export default function Question({ question, navigation }) {
   return (
     <Container
       color={question.info.color}
@@ -21,6 +21,7 @@ export default function Question({ question }) {
         }
       }
       disabled={!question.Available}
+      onPress={() => navigation.navigate('Question', { question })}
     >
       {question.info.icon}
 

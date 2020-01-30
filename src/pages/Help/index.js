@@ -47,7 +47,7 @@ export default function Help({ navigation }) {
   return (
     <Container>
       <Content>
-        <Header navigation={navigation} />
+        <Header title="FAQs" navigation={navigation} />
 
         {topics &&
           topics.map(topic => <FAQBox key={topic.title} topic={topic} />)}
