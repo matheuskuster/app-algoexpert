@@ -19,8 +19,9 @@ export default function FAQBox({ topic }) {
   function handlePress() {
     opened = !opened;
 
-    Animated.spring(animatedPlusMinus, {
+    Animated.timing(animatedPlusMinus, {
       toValue: opened ? 1 : 0,
+      timing: 100,
     }).start();
   }
 
@@ -53,6 +54,7 @@ export default function FAQBox({ topic }) {
                   rotate: animatedPlusMinus.interpolate({
                     inputRange: [0, 1],
                     outputRange: ['90deg', '0deg'],
+                    extrapolate: 'clamp',
                   }),
                 },
               ],
@@ -69,6 +71,7 @@ export default function FAQBox({ topic }) {
             outputRange: [0, 1000],
             extrapolate: 'clamp',
           }),
+          opacity: animatedPlusMinus,
         }}
       >
         {topic.questions.map(question => (
