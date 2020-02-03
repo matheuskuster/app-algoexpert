@@ -29,7 +29,7 @@ export default function Tips() {
     <Container>
       <Title>
         <TitleText>Tips & Tricks</TitleText>
-        <Subtitle>What'll make you stand out</Subtitle>
+        <Subtitle>What&apos;ll make you stand out</Subtitle>
       </Title>
 
       <TipsBox>
