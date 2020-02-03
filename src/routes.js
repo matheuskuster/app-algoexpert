@@ -5,13 +5,14 @@ import SignIn from './pages/SignIn';
 
 import Home from './pages/Home';
 import Help from './pages/Help';
+import Question from './pages/Question';
 
 export default (signedIn = false) =>
   createAppContainer(
     createSwitchNavigator(
       {
         SignIn,
-        App: createSwitchNavigator({ Home, Help }),
+        App: createSwitchNavigator({ Home, Help, Question }),
       },
       {
         initialRouteName: signedIn ? 'App' : 'SignIn',

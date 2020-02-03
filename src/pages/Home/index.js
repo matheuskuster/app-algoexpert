@@ -30,7 +30,7 @@ import {
   Content,
 } from './styles';
 
-export default function Home({ navigation, isFocused }) {
+export default function Home({ navigation }) {
   const [questions, setQuestions] = useState([]);
   const [experienceQuestions, setExperienceQuestions] = useState([]);
   const [categories, setCategories] = useState(null);
@@ -214,7 +214,9 @@ export default function Home({ navigation, isFocused }) {
               horizontal
               showsHorizontalScrollIndicator={false}
               keyExtractor={item => item.Name}
-              renderItem={({ item }) => <Question question={item} />}
+              renderItem={({ item }) => (
+                <Question navigation={navigation} question={item} />
+              )}
               title="Questions"
               subtitle="Based on your experience"
               close={noHeader}

@@ -32,7 +32,7 @@ export default function Menu({ navigation }) {
     <Container>
       <OwnBox>
         <OwnSymbol />
-        <OwnText>You don't own AlgoExpert</OwnText>
+        <OwnText>You don&apos;t own AlgoExpert</OwnText>
       </OwnBox>
 
       <MenuOptions>

@@ -4,14 +4,14 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 import { Container, Title } from './styles';
 
-export default function Header({ navigation }) {
+export default function Header({ navigation, title }) {
   return (
     <Container>
       <TouchableOpacity onPress={() => navigation.navigate('Home')}>
         <MaterialIcons name="chevron-left" size={38} color="#02203c" />
       </TouchableOpacity>
 
-      <Title>FAQs</Title>
+      <Title>{title}</Title>
 
       <StatusBar barStyle="dark-content" />
     </Container>
