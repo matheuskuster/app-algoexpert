@@ -11,7 +11,9 @@ export const Container = styled(SafeAreaView).attrs({
   background: #f6f9fc;
 `;
 
-export const Content = styled(KeyboardAwareScrollView)`
+export const Content = styled(KeyboardAwareScrollView).attrs({
+  alwaysBounceVertical: false,
+})`
   background: #f6f9fc;
 `;
 
