@@ -101,7 +101,7 @@ export default function Menu({ navigation }) {
         </Option>
       </MenuOptions>
 
-      <BuyButton>
+      <BuyButton onPress={() => navigation.navigate('Payment')}>
         <MaterialCommunityIcons
           name="credit-card-multiple"
           color="rgba(255, 255, 255, 0.8)"

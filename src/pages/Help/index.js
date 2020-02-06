@@ -69,6 +69,7 @@ export default function Help({ navigation }) {
             ref={nameRef}
             onChange={setName}
             value={name}
+            spaced
           />
 
           <Input
@@ -80,6 +81,7 @@ export default function Help({ navigation }) {
             ref={emailRef}
             onChange={setEmail}
             value={email}
+            spaced
           />
 
           <CategoryInput setCategory={setCategory} />
@@ -95,6 +97,7 @@ export default function Help({ navigation }) {
             ref={messageRef}
             onChange={setMessage}
             value={message}
+            spaced
           />
 
           <SubmitButton

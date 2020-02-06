@@ -3,7 +3,7 @@ import { Animated } from 'react-native';
 
 import { Container, StyledInput, Label, Border } from './styles';
 
-function Input({ label, ...rest }, ref) {
+function Input({ label, inputSize, spaced, ...rest }, ref) {
   const width = new Animated.Value(0);
 
   function onFocus() {
@@ -20,9 +20,13 @@ function Input({ label, ...rest }, ref) {
     }).start();
   }
 
+  function maxBorderWidth() {
+    return `${95 - (100 - Number(inputSize.replace('%', ''))) / 8}%`;
+  }
+
   return (
-    <Container>
-      <Label>{label}</Label>
+    <Container spaced={spaced} inputSize={inputSize}>
+      {label && <Label>{label}</Label>}
       <StyledInput
         style={{
           shadowColor: '#000',
@@ -32,7 +36,6 @@ function Input({ label, ...rest }, ref) {
           },
           shadowOpacity: 0.2,
           shadowRadius: 4,
-
           elevation: 8,
         }}
         onBlur={onBlur}
@@ -44,7 +47,7 @@ function Input({ label, ...rest }, ref) {
         style={{
           width: width.interpolate({
             inputRange: [0, 1],
-            outputRange: ['0%', '95%'],
+            outputRange: ['0%', inputSize ? maxBorderWidth() : '95%'],
             extrapolate: 'clamp',
           }),
         }}
