@@ -152,7 +152,7 @@ export default function Question({ navigation }) {
         }}
       >
         <HeaderTop>
-          <BackButton onPress={() => navigation.navigate('Home')}>
+          <BackButton onPress={() => navigation.goBack()}>
             <MaterialIcons name="chevron-left" size={40} color="#fff" />
           </BackButton>
           <HeaderTopText>QUESTION</HeaderTopText>
