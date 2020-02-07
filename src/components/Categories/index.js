@@ -14,7 +14,11 @@ import {
   NumberOfQuestions,
 } from './styles';
 
-export default function Categories({ data: categories }) {
+export default function Categories({
+  data: categories,
+  navigation,
+  questions,
+}) {
   return (
     <Container>
       <Title>
@@ -27,6 +31,14 @@ export default function Categories({ data: categories }) {
           return (
             <CategoryGroup key={category}>
               <Category
+                onPress={() =>
+                  navigation.navigate('Category', {
+                    category,
+                    questions: questions.filter(
+                      question => question.Category === category
+                    ),
+                  })
+                }
                 style={{
                   shadowColor: '#000',
                   shadowOffset: {
@@ -49,6 +61,15 @@ export default function Categories({ data: categories }) {
               </Category>
 
               <Category
+                onPress={() =>
+                  navigation.navigate('Category', {
+                    category: Object.keys(categories)[index + 1],
+                    questions: questions.filter(
+                      question =>
+                        question.Category === Object.keys(categories)[index + 1]
+                    ),
+                  })
+                }
                 style={{
                   shadowColor: '#000',
                   shadowOffset: {

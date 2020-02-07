@@ -227,7 +227,13 @@ export default function Home({ navigation }) {
               })}
             />
 
-            {categories && <Categories data={categories} />}
+            {categories && (
+              <Categories
+                navigation={navigation}
+                data={categories}
+                questions={questions}
+              />
+            )}
 
             <List
               data={dataStructures}
