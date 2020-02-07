@@ -204,7 +204,7 @@ export default function Payment({ navigation }) {
 
         <PromoCode>
           <Input
-            editable={false}
+            editable={!applied}
             label="Promo code"
             autoCorrect={false}
             autoCapitalize="none"
