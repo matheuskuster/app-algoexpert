@@ -100,7 +100,7 @@ export default function Menu({ navigation }) {
           />
         </Option>
 
-        <Option>
+        <Option onPress={() => navigation.navigate('Tips')}>
           <Left>
             <MaterialCommunityIcons
               name="lightbulb-on-outline"
