@@ -99,6 +99,22 @@ export default function Menu({ navigation }) {
             color="rgba(255, 255, 255, 0.8)"
           />
         </Option>
+
+        <Option>
+          <Left>
+            <MaterialCommunityIcons
+              name="lightbulb-on-outline"
+              size={24}
+              color="rgba(255, 255, 255, 0.8)"
+            />
+            <OptionText>Tips & Tricks</OptionText>
+          </Left>
+          <MaterialIcons
+            name="chevron-right"
+            size={24}
+            color="rgba(255, 255, 255, 0.8)"
+          />
+        </Option>
       </MenuOptions>
 
       <BuyButton onPress={() => navigation.navigate('Payment')}>
