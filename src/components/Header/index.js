@@ -2,9 +2,9 @@ import React from 'react';
 import { TouchableOpacity, StatusBar } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
-import { Container, Title } from './styles';
+import { Container, Title, Description } from './styles';
 
-export default function Header({ navigation, title }) {
+export default function Header({ navigation, title, description }) {
   return (
     <Container>
       <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -12,6 +12,7 @@ export default function Header({ navigation, title }) {
       </TouchableOpacity>
 
       <Title>{title}</Title>
+      {description && <Description>{description}</Description>}
 
       <StatusBar barStyle="dark-content" />
     </Container>

@@ -18,7 +18,7 @@ import Loading from '~/components/Loading';
 import Question from '~/components/Question';
 import Categories from '~/components/Categories';
 import Datastructure from '~/components/Datastructure';
-import Tips from '~/components/Tips';
+
 import Menu from '~/components/Menu';
 
 import {
@@ -247,8 +247,6 @@ export default function Home({ navigation }) {
               title="Data Structures"
               subtitle="The foundational knowledge you need."
             />
-
-            <Tips />
           </Content>
 
           <Header

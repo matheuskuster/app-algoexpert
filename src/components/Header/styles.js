@@ -14,3 +14,12 @@ export const Title = styled.Text`
   font-family: OpenSansBold;
   color: #02203c;
 `;
+
+export const Description = styled.Text`
+  font-size: 15px;
+
+  margin-left: 8px;
+  font-family: OpenSans;
+  color: #999;
+  margin-top: 10px;
+`;
