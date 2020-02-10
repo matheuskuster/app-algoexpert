@@ -99,3 +99,11 @@ export const OptionText = styled.Text`
   font-size: 16px;
   margin-left: 20px;
 `;
+
+export const CopyrightWarning = styled.Text`
+  font-family: OpenSans;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 30px;
+
+  text-align: center;
+`;

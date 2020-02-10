@@ -23,6 +23,7 @@ import {
   Option,
   Left,
   OptionText,
+  CopyrightWarning,
 } from './styles';
 
 export default function Menu({ navigation }) {
@@ -137,6 +138,10 @@ export default function Menu({ navigation }) {
         <Feather name="log-out" color="rgba(255, 255, 255, 0.8)" size={26} />
         <LogOutText>Log Out</LogOutText>
       </LogOutButton>
+
+      <CopyrightWarning>
+        Copyright &copy; 2020 AlgoExpert, LLC.{'\n'}All rights reserved.
+      </CopyrightWarning>
     </Container>
   );
 }
