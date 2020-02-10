@@ -98,10 +98,9 @@ export default function Home({ navigation }) {
         );
 
         const formattedData = dataStructuresResponse.data.datastructures.map(
-          (datastructure, index) => ({
+          datastructure => ({
             ...datastructure,
             formattedThumbnail: datastructure.thumbnail_url.split('.webp')[0],
-            watched: index % 2 === 0,
           })
         );
 

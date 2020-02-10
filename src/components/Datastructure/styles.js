@@ -46,6 +46,7 @@ export const Description = styled.Text.attrs({
 export const Watched = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
+  margin-left: -5px;
 `;
 
 export const WatchedText = styled.Text`
@@ -55,5 +56,15 @@ export const WatchedText = styled.Text`
   margin-left: 5px;
 `;
 
-// 192 108
-// 370 x
+export const Duration = styled.Text`
+  color: #fff;
+  font-family: JuraBold;
+  font-size: 16px;
+  margin-top: 10px;
+`;
+
+export const Unavailable = styled.Text`
+  color: rgba(255, 255, 255, 0.8);
+  font-family: Jura;
+  font-size: 16px;
+`;
