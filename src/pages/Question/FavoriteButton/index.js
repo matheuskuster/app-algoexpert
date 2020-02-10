@@ -1,49 +1,41 @@
 import React, { useState, useEffect } from 'react';
-import { AsyncStorage } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useDispatch, useSelector } from 'react-redux';
+
+import {
+  favoriteRequest,
+  unfavoriteRequest,
+} from '~/store/modules/question/actions';
 
 import { Container } from './styles';
 
 export default function FavoriteButton({ question }) {
-  const [favoriteQuestions, setFavoriteQuestions] = useState([]);
+  const dispatch = useDispatch();
+  const favoriteQuestions = useSelector(state => state.question.favorites);
+
+  const [favorited, setFavorited] = useState(false);
 
   useEffect(() => {
-    async function retrieveFavoriteQuestions() {
-      const data = await AsyncStorage.getItem('favorite_questions');
+    setFavorited(() => favoriteQuestions.includes(question));
+  }, [favoriteQuestions, question]);
 
-      setFavoriteQuestions(JSON.parse(data) || []);
+  function handlePress() {
+    if (favorited) {
+      dispatch(unfavoriteRequest(question));
+    } else {
+      dispatch(favoriteRequest(question));
     }
 
-    retrieveFavoriteQuestions();
-  }, []);
-
-  async function storeFavoriteQuestions(data) {
-    await AsyncStorage.setItem('favorite_questions', JSON.stringify(data));
+    setFavorited(!favorited);
   }
 
-  function handleFavorite() {
-    const data = [...favoriteQuestions, question.Name];
-
-    setFavoriteQuestions(data);
-    storeFavoriteQuestions(data);
-  }
-
-  function handleUnfavorite() {
-    const data = favoriteQuestions.filter(
-      favorite => favorite !== question.Name
-    );
-
-    setFavoriteQuestions(data);
-    storeFavoriteQuestions(data);
-  }
-
-  return favoriteQuestions && favoriteQuestions.includes(question.Name) ? (
-    <Container onPress={handleUnfavorite}>
-      <MaterialIcons name="favorite" color="#f6f9fc" size={30} />
-    </Container>
-  ) : (
-    <Container onPress={handleFavorite}>
-      <MaterialIcons name="favorite-border" color="#f6f9fc" size={30} />
+  return (
+    <Container onPress={handlePress}>
+      {favorited ? (
+        <MaterialIcons name="favorite" color="#f6f9fc" size={30} />
+      ) : (
+        <MaterialIcons name="favorite-border" color="#f6f9fc" size={30} />
+      )}
     </Container>
   );
 }
