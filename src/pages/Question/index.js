@@ -156,7 +156,7 @@ export default function Question({ navigation }) {
             <MaterialIcons name="chevron-left" size={40} color="#fff" />
           </BackButton>
           <HeaderTopText>QUESTION</HeaderTopText>
-          <FavoriteButton />
+          <FavoriteButton question={question} />
         </HeaderTop>
         <Category
           style={{
