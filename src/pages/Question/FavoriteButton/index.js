@@ -16,7 +16,11 @@ export default function FavoriteButton({ question }) {
   const [favorited, setFavorited] = useState(false);
 
   useEffect(() => {
-    setFavorited(() => favoriteQuestions.includes(question));
+    const isFavorited = !!favoriteQuestions.filter(
+      favoriteQuestion => favoriteQuestion.Name === question.Name
+    ).length;
+
+    setFavorited(isFavorited);
   }, [favoriteQuestions, question]);
 
   function handlePress() {

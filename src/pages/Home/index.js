@@ -119,7 +119,8 @@ export default function Home({ navigation }) {
   useEffect(() => {
     const data = questions
       .filter(question => question.Difficulty === 1)
-      .sort(question => !question.Available);
+      .sort(question => !question.Available)
+      .slice(0, 10);
 
     setExperienceQuestions(data);
   }, [questions]);
