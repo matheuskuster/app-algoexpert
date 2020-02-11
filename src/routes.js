@@ -10,6 +10,7 @@ import Question from './pages/Question';
 import Payment from './pages/Payment';
 import Category from './pages/Category';
 import Tips from './pages/Tips';
+import QuestionsList from './pages/QuestionsList';
 
 export default (signedIn = false) =>
   createAppContainer(
@@ -17,7 +18,7 @@ export default (signedIn = false) =>
       {
         SignIn,
         App: createStackNavigator(
-          { Home, Help, Question, Payment, Category, Tips },
+          { Home, Help, Question, Payment, Category, Tips, QuestionsList },
           { headerMode: 'none' }
         ),
       },
