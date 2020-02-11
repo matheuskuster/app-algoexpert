@@ -30,7 +30,7 @@ import {
 export default function Category({ navigation }) {
   const category = useMemo(() => navigation.getParam('category'), [navigation]);
   const questions = useMemo(
-    () => category.questions.sort(question => question.Difficulty),
+    () => category.questions.sort((a, b) => a.Difficulty > b.Difficulty),
     [category]
   );
 

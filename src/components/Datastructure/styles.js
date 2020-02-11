@@ -5,6 +5,7 @@ export const Container = styled.View`
   width: 370px;
   border-radius: 6px;
   margin-right: 25px;
+  margin-bottom: 100px;
 `;
 
 export const Thumbnail = styled.ImageBackground`
