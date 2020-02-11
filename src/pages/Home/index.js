@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState, useMemo } from 'react';
 import { Animated } from 'react-native';
+import { useSelector } from 'react-redux';
 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import * as Font from 'expo-font';
@@ -31,6 +32,7 @@ import {
 } from './styles';
 
 export default function Home({ navigation }) {
+  const favoriteQuestions = useSelector(state => state.question.favorites);
   const [questions, setQuestions] = useState([]);
   const [experienceQuestions, setExperienceQuestions] = useState([]);
   const [categories, setCategories] = useState(null);
@@ -115,7 +117,9 @@ export default function Home({ navigation }) {
   }, []);
 
   useEffect(() => {
-    const data = questions.sort(question => !question.Available);
+    const data = questions
+      .filter(question => question.Difficulty === 1)
+      .sort(question => !question.Available);
 
     setExperienceQuestions(data);
   }, [questions]);
@@ -225,6 +229,20 @@ export default function Home({ navigation }) {
                 outputRange: [1, 0],
               })}
             />
+
+            {favoriteQuestions.length > 0 && (
+              <List
+                data={favoriteQuestions}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                keyExtractor={item => item.Name}
+                renderItem={({ item }) => (
+                  <Question navigation={navigation} question={item} />
+                )}
+                title="Favorite"
+                subtitle="Questions you've liked"
+              />
+            )}
 
             {categories && (
               <Categories
