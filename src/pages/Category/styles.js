@@ -101,14 +101,14 @@ export const QuestionTop = styled.View`
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px 0 20px;
-  border-color: ${props => props.color};
+  border-color: ${props => props.theme.primary};
   border-left-width: 3px;
   border-top-left-radius: 4px;
 `;
 
 export const Left = styled.Text`
   font-family: OpenSansBold;
-  color: ${props => props.color};
+  color: ${props => props.theme.primary};
   font-size: 16px;
 `;
 

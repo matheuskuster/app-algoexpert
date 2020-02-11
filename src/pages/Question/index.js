@@ -1,13 +1,14 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { Video } from 'expo-av';
 import { ThemeProvider } from 'styled-components';
-import { darken } from 'polished';
 
 import { ActivityIndicator, Animated } from 'react-native';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 import api from '~/services/api';
 import formattedLanguage from '~/util/language';
+import themes from '~/util/themes';
+import categoryIcon from '~/util/category';
 
 import {
   Header,
@@ -47,31 +48,9 @@ export default function Question({ navigation }) {
   const showHints = new Animated.Value(0);
 
   const question = useMemo(() => navigation.getParam('question'), [navigation]);
-  const formattedIcon = useMemo(() => {
-    const { icon } = question.info;
 
-    const formattedProps = {
-      ...icon.props,
-      size: 80,
-      style: {
-        ...icon.props.style,
-        color: '#f6f9fc',
-      },
-    };
-
-    return {
-      ...icon,
-      props: { ...formattedProps },
-    };
-  }, [question]);
-
-  const theme = useMemo(
-    () => ({
-      primary: question.info.color,
-      secondary: darken(0.2, question.info.color),
-    }),
-    [question]
-  );
+  const theme = themes[question.Difficulty - 1];
+  const { type: Icon, name } = categoryIcon(question.Category);
 
   let hintsOpened = false;
 
@@ -167,7 +146,7 @@ export default function Question({ navigation }) {
             }),
           }}
         >
-          {formattedIcon}
+          <Icon name={name} size={80} color="#f6f9fc" />
         </Category>
         <QuestionData
           style={{
@@ -179,7 +158,9 @@ export default function Question({ navigation }) {
           }}
         >
           <QuestionTitle>{question.Name}</QuestionTitle>
-          <QuestionDifficulty>{question.info.difficulty} </QuestionDifficulty>
+          <QuestionDifficulty>
+            {question.formattedDifficulty}{' '}
+          </QuestionDifficulty>
         </QuestionData>
       </Header>
       <HeaderBorder />

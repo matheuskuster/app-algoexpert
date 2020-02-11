@@ -1,5 +1,8 @@
 import React, { useMemo } from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
+import { ThemeProvider } from 'styled-components';
+
+import themes from '~/util/themes';
 
 import {
   Container,
@@ -27,32 +30,11 @@ import {
 export default function Category({ navigation }) {
   const category = useMemo(() => navigation.getParam('category'), [navigation]);
   const questions = useMemo(
-    () =>
-      navigation
-        .getParam('questions')
-        .sort((a, b) => a.Difficulty > b.Difficulty),
-    [navigation]
+    () => category.questions.sort(question => question.Difficulty),
+    [category]
   );
 
-  const formattedIcon = useMemo(() => {
-    const { icon } = questions[0].info;
-
-    const formattedProps = {
-      ...icon.props,
-      size: 80,
-      style: {
-        ...icon.props.style,
-        color: '#02203c',
-        marginLeft: 0,
-        marginRight: 0,
-      },
-    };
-
-    return {
-      ...icon,
-      props: { ...formattedProps },
-    };
-  }, [questions]);
+  const { type: Icon, name } = category.icon;
 
   const completedQuestions = useMemo(
     () => questions.filter(question => question.Metadata.completed).length,
@@ -86,9 +68,13 @@ export default function Category({ navigation }) {
             elevation: 8,
           }}
         >
-          {formattedIcon}
-
-          <CategoryTitle>{category}</CategoryTitle>
+          <Icon
+            name={name}
+            size={80}
+            color="#02203c"
+            style={{ marginLeft: 0, marginRight: 0 }}
+          />
+          <CategoryTitle>{category.name}</CategoryTitle>
           <CategoryData>
             <NumberAndDescription>
               <Number>{questions.length}</Number>
@@ -102,43 +88,46 @@ export default function Category({ navigation }) {
         </Card>
 
         <QuestionList>
-          {questions.map(question => (
-            <Question
-              key={question.Name}
-              onPress={() =>
-                navigation.navigate('Question', {
-                  question,
-                  goBackKey: navigation.state.key,
-                })
-              }
-              style={{
-                shadowColor: '#000',
-                shadowOffset: {
-                  width: 0,
-                  height: 4,
-                },
-                shadowOpacity: 0.2,
-                shadowRadius: 4.65,
+          {questions.map(question => {
+            const theme = themes[question.Difficulty - 1];
 
-                elevation: 8,
-              }}
-              disabled={!question.Available}
-            >
-              <QuestionTop color={question.info.color}>
-                <Left color={question.info.color}>
-                  {question.info.difficulty}
-                </Left>
-                <Right>
-                  <MaterialIcons
-                    name="check-circle"
-                    size={30}
-                    color={question.Metadata.completed ? '#69e076' : '#ddd'}
-                  />
-                </Right>
-              </QuestionTop>
-              <QuestionName>{question.Name}</QuestionName>
-            </Question>
-          ))}
+            return (
+              <ThemeProvider key={question.Name} theme={theme}>
+                <Question
+                  onPress={() =>
+                    navigation.navigate('Question', {
+                      question,
+                      goBackKey: navigation.state.key,
+                    })
+                  }
+                  style={{
+                    shadowColor: '#000',
+                    shadowOffset: {
+                      width: 0,
+                      height: 4,
+                    },
+                    shadowOpacity: 0.2,
+                    shadowRadius: 4.65,
+
+                    elevation: 8,
+                  }}
+                  disabled={!question.Available}
+                >
+                  <QuestionTop>
+                    <Left>{question.formattedDifficulty}</Left>
+                    <Right>
+                      <MaterialIcons
+                        name="check-circle"
+                        size={30}
+                        color={question.Metadata.completed ? '#69e076' : '#ddd'}
+                      />
+                    </Right>
+                  </QuestionTop>
+                  <QuestionName>{question.Name}</QuestionName>
+                </Question>
+              </ThemeProvider>
+            );
+          })}
 
           <TranslateFix />
         </QuestionList>

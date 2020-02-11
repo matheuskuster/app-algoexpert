@@ -14,11 +14,7 @@ import {
   NumberOfQuestions,
 } from './styles';
 
-export default function Categories({
-  data: categories,
-  navigation,
-  questions,
-}) {
+export default function Categories({ data: categories, navigation }) {
   return (
     <Container>
       <Title>
@@ -28,15 +24,19 @@ export default function Categories({
 
       {Object.keys(categories).map((category, index) => {
         if (index % 2 === 0) {
+          const { type: FirstIcon, name: firstName } = categories[
+            category
+          ].icon;
+          const { type: SecondIcon, name: secondName } = categories[
+            Object.keys(categories)[index + 1]
+          ].icon;
+
           return (
             <CategoryGroup key={category}>
               <Category
                 onPress={() =>
                   navigation.navigate('Category', {
-                    category,
-                    questions: questions.filter(
-                      question => question.Category === category
-                    ),
+                    category: categories[category],
                   })
                 }
                 style={{
@@ -56,18 +56,14 @@ export default function Categories({
                   <NumberOfQuestions>
                     0 / {categories[category].questions.length}
                   </NumberOfQuestions>
-                  {categories[category].icon}
+                  <FirstIcon name={firstName} size={30} color="#02203c" />
                 </CategoryFooter>
               </Category>
 
               <Category
                 onPress={() =>
                   navigation.navigate('Category', {
-                    category: Object.keys(categories)[index + 1],
-                    questions: questions.filter(
-                      question =>
-                        question.Category === Object.keys(categories)[index + 1]
-                    ),
+                    category: categories[Object.keys(categories)[index + 1]],
                   })
                 }
                 style={{
@@ -93,7 +89,7 @@ export default function Categories({
                         .length
                     }
                   </NumberOfQuestions>
-                  {categories[Object.keys(categories)[index + 1]].icon}
+                  <SecondIcon name={secondName} size={30} color="#02203c" />
                 </CategoryFooter>
               </Category>
             </CategoryGroup>

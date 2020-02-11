@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Octicons,
   Entypo,
@@ -12,58 +11,85 @@ export default category => {
 
   switch (category) {
     case 'Arrays':
-      icon = (
-        <MaterialCommunityIcons
-          name="code-brackets"
-          size={30}
-          color="#02203c"
-        />
-      );
+      icon = {
+        type: MaterialCommunityIcons,
+        name: 'code-brackets',
+      };
       break;
     case 'Strings':
-      icon = (
-        <MaterialCommunityIcons name="code-string" size={30} color="#02203c" />
-      );
+      icon = {
+        type: MaterialCommunityIcons,
+        name: 'code-string',
+      };
       break;
     case 'Binary Search Trees':
-      icon = <Entypo name="flow-tree" size={30} color="#02203c" />;
+      icon = {
+        type: Entypo,
+        name: 'flow-tree',
+      };
       break;
     case 'Binary Trees':
-      icon = <Octicons name="file-binary" size={30} color="#02203c" />;
+      icon = {
+        type: Octicons,
+        name: 'file-binary',
+      };
       break;
     case 'Dynamic Programming':
-      icon = (
-        <MaterialCommunityIcons name="file-tree" size={30} color="#02203c" />
-      );
+      icon = {
+        type: MaterialCommunityIcons,
+        name: 'file-tree',
+      };
       break;
     case 'Famous Algorithms':
-      icon = <Entypo name="star" size={30} color="#02203c" />;
+      icon = {
+        type: Entypo,
+        name: 'star',
+      };
       break;
     case 'Graphs':
-      icon = (
-        <MaterialCommunityIcons name="graphql" size={30} color="#02203c" />
-      );
+      icon = {
+        type: MaterialCommunityIcons,
+        name: 'graphql',
+      };
       break;
     case 'Heaps':
-      icon = <AntDesign name="sharealt" size={30} color="#02203c" />;
+      icon = { type: AntDesign, name: 'sharealt' };
       break;
     case 'Linked Lists':
-      icon = <AntDesign name="link" size={30} color="#02203c" />;
+      icon = {
+        type: AntDesign,
+        name: 'link',
+      };
       break;
     case 'Recursion':
-      icon = <MaterialCommunityIcons name="loop" size={30} color="#02203c" />;
+      icon = {
+        type: MaterialCommunityIcons,
+        name: 'loop',
+      };
       break;
     case 'Searching':
-      icon = <AntDesign name="search1" size={30} color="#02203c" />;
+      icon = {
+        type: AntDesign,
+        name: 'search1',
+      };
       break;
     case 'Sorting':
-      icon = <MaterialCommunityIcons name="sort" size={30} color="#02203c" />;
+      icon = {
+        type: MaterialCommunityIcons,
+        name: 'sort',
+      };
       break;
     case 'Stacks':
-      icon = <FontAwesome name="stack-overflow" size={30} color="#02203c" />;
+      icon = {
+        type: FontAwesome,
+        name: 'stack-overflow',
+      };
       break;
     case 'Tries':
-      icon = <Entypo name="line-graph" size={30} color="#02203c" />;
+      icon = {
+        type: Entypo,
+        name: 'line-graph',
+      };
       break;
 
     default:

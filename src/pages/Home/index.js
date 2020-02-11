@@ -10,8 +10,8 @@ import logo from '~/../assets/logo.png';
 
 import api from '~/services/api';
 
-import format from '~/util/question';
-import formatCategory from '~/util/category';
+import formatDifficulty from '~/util/question';
+import formatCategoryIcon from '~/util/category';
 
 import Background from '~/components/Background';
 import List from '~/components/List';
@@ -73,18 +73,19 @@ export default function Home({ navigation }) {
       const response = await api.get('/problems/v1/summary');
       const categoriesDraft = {};
 
-      const data = response.data.Problems.map(question => ({
+      const data = await response.data.Problems.map(question => ({
         ...question,
-        info: format(question),
+        formattedDifficulty: formatDifficulty(question),
       }));
 
-      response.data.Problems.forEach(question => {
+      data.forEach(question => {
         if (categoriesDraft[question.Category]) {
           categoriesDraft[question.Category].questions.push(question);
         } else {
           categoriesDraft[question.Category] = {
             questions: [],
-            icon: formatCategory(question.Category),
+            icon: formatCategoryIcon(question.Category),
+            name: question.Category,
           };
 
           categoriesDraft[question.Category].questions.push(question);
@@ -246,11 +247,7 @@ export default function Home({ navigation }) {
             )}
 
             {categories && (
-              <Categories
-                navigation={navigation}
-                data={categories}
-                questions={questions}
-              />
+              <Categories navigation={navigation} data={categories} />
             )}
 
             <List
@@ -321,7 +318,3 @@ export default function Home({ navigation }) {
     </Background>
   );
 }
-
-Home.navigationOptions = {
-  headerShown: false,
-};
