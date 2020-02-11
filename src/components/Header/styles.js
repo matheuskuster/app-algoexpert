@@ -5,6 +5,13 @@ export const Container = styled.View`
   align-items: flex-start;
 `;
 
+export const HeaderTop = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+`;
+
 export const Title = styled.Text`
   font-size: 40px;
   font-weight: bold;

@@ -230,6 +230,12 @@ export default function Home({ navigation }) {
                 inputRange: [0, 50],
                 outputRange: [1, 0],
               })}
+              onPress={() =>
+                navigation.navigate('QuestionsList', {
+                  categories,
+                  questions,
+                })
+              }
             />
 
             {favoriteQuestions.length > 0 && (
@@ -243,6 +249,7 @@ export default function Home({ navigation }) {
                 )}
                 title="Favorite"
                 subtitle="Questions you've liked"
+                disabled
               />
             )}
 

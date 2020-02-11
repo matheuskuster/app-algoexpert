@@ -21,12 +21,13 @@ export default function List({
   close,
   setNoHeader,
   closeOpacity,
+  onPress,
   ...rest
 }) {
   return (
     <Container>
-      <Title disabled={disabled}>
-        <Left>
+      <Title>
+        <Left onPress={onPress} disabled={disabled}>
           <TitleText>{title}</TitleText>
           {subtitle && <Subtitle>{subtitle}</Subtitle>}
         </Left>
