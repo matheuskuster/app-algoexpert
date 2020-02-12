@@ -1,6 +1,9 @@
 import React, { useState, useRef } from 'react';
 import { Alert, Switch } from 'react-native';
 import { EvilIcons } from '@expo/vector-icons';
+import { useDispatch } from 'react-redux';
+
+import { historyRequest } from '~/store/modules/config/actions';
 
 import Input from '~/components/Input';
 import Header from '~/components/Header';
@@ -30,6 +33,8 @@ import {
 } from './styles';
 
 export default function Payment({ navigation }) {
+  const dispatch = useDispatch();
+
   const [applied, setApplied] = useState(false);
   const [saveCardData, setSaveCardData] = useState(false);
 
@@ -53,6 +58,9 @@ export default function Payment({ navigation }) {
       setApplied(true);
       Alert.alert(
         `The following promo code has been applied to your account: '${promoCode}'`
+      );
+      dispatch(
+        historyRequest(`Applied the promo code '${promoCode}' to your account.`)
       );
     } else {
       setApplied(false);

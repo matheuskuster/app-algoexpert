@@ -1,6 +1,7 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { Video } from 'expo-av';
 import { ThemeProvider } from 'styled-components';
+import { useDispatch } from 'react-redux';
 
 import { ActivityIndicator, Animated } from 'react-native';
 import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
@@ -9,6 +10,8 @@ import api from '~/services/api';
 import formattedLanguage from '~/util/language';
 import themes from '~/util/themes';
 import categoryIcon from '~/util/category';
+
+import { historyRequest } from '~/store/modules/config/actions';
 
 import {
   Header,
@@ -39,6 +42,8 @@ import FavoriteButton from './FavoriteButton';
 import CodeSolution from './CodeSolution';
 
 export default function Question({ navigation }) {
+  const dispatch = useDispatch();
+
   const [showSolution, setShowSolution] = useState(false);
   const [questionData, setQuestionData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -77,10 +82,11 @@ export default function Question({ navigation }) {
 
       setQuestionData(data);
       setLoading(false);
+      dispatch(historyRequest(`Saw ${question.Name} description.`));
     }
 
     fetchQuestionData();
-  }, [question]);
+  }, [question, dispatch]);
 
   useEffect(() => {
     if (!showSolution) {
@@ -175,6 +181,7 @@ export default function Question({ navigation }) {
 
       {showSolution ? (
         <CodeSolution
+          question={question}
           theme={theme}
           handleScroll={handleScroll}
           scrollY={scrollY}
@@ -243,7 +250,7 @@ export default function Question({ navigation }) {
                     borderBottomRightRadius: 4,
                   }}
                 >
-                  <ButtonText>Show Hints</ButtonText>
+                  <ButtonText>Hints</ButtonText>
                   <MaterialCommunityIcons
                     name="help"
                     size={25}
@@ -262,7 +269,10 @@ export default function Question({ navigation }) {
                   }}
                 >
                   {questionData.Hints.map((hint, index) => (
-                    <Hint key={hint}>
+                    <Hint
+                      last={questionData.Hints.length - 1 === index}
+                      key={hint}
+                    >
                       <HintTitle>Hint #{index + 1}</HintTitle>
                       <HintText>{hint}</HintText>
                     </Hint>

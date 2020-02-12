@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { ActivityIndicator } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
+import { useDispatch } from 'react-redux';
+
+import { historyRequest } from '~/store/modules/config/actions';
 
 import api from '~/services/api';
 
@@ -19,6 +22,7 @@ import {
 } from './styles';
 
 export default function Tips({ navigation }) {
+  const dispatch = useDispatch();
   const [tips, setTips] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -28,10 +32,11 @@ export default function Tips({ navigation }) {
 
       setTips(response.data);
       setLoading(false);
+      dispatch(historyRequest('Saw some Tips & Tricks.'));
     }
 
     loadTips();
-  }, []);
+  }, [dispatch]);
 
   return (
     <Container>

@@ -5,6 +5,9 @@ import { ScrollView, Animated } from 'react-native';
 import { dracula } from 'react-syntax-highlighter/styles/hljs';
 import { MaterialIcons } from '@expo/vector-icons';
 import { ThemeProvider } from 'styled-components';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { historyRequest } from '~/store/modules/config/actions';
 
 import {
   Container,
@@ -20,10 +23,18 @@ import {
   ItemSeparatorComponent,
 } from './styles';
 
-export default function CodeSolution({ solutions, setShowSolution, theme }) {
+export default function CodeSolution({
+  solutions,
+  setShowSolution,
+  theme,
+  question,
+}) {
+  const dispatch = useDispatch();
   const [solutionIndex, setSolutionIndex] = useState(1);
   const [choosingLanguage, setChoosingLanguage] = useState(false);
-  const [language, setLanguage] = useState('python');
+  const [language, setLanguage] = useState(
+    useSelector(state => state.config.favoriteLanguage)
+  );
 
   const opacity = new Animated.Value(0);
   const solutionsLength = useMemo(() => solutions[language].Solutions.length, [
@@ -52,7 +63,14 @@ export default function CodeSolution({ solutions, setShowSolution, theme }) {
     }).start();
   }, []); //eslint-disable-line
 
-  useEffect(() => setSolutionIndex(1), [language]);
+  useEffect(() => {
+    setSolutionIndex(1);
+    dispatch(
+      historyRequest(
+        `Accessed the ${solutions[language].formattedLanguage} solution for ${question.Name}.`
+      )
+    );
+  }, [language, dispatch, question, solutions]);
 
   return (
     <ThemeProvider theme={theme}>

@@ -3,13 +3,19 @@ import { takeLatest, put, all } from 'redux-saga/effects';
 import api from '~/services/api';
 
 import { signInSuccess, signFailure } from './actions';
+import { historyRequest } from '../config/actions';
 
 export function* signIn() {
   try {
     yield put(signInSuccess());
+    yield put(historyRequest('Logged in.'));
   } catch (err) {
     yield put(signFailure());
   }
+}
+
+export function* signOut() {
+  yield put(historyRequest('Logged out.'));
 }
 
 export function setToken() {
@@ -20,4 +26,5 @@ export function setToken() {
 export default all([
   takeLatest('persist/REHYDRATE', setToken),
   takeLatest('@auth/SIGN_IN_REQUEST', signIn),
+  takeLatest('@auth/SIGN_OUT', signOut),
 ]);

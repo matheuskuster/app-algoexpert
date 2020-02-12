@@ -6,7 +6,7 @@ export default reducers => {
     {
       key: 'algoexpert',
       storage: AsyncStorage,
-      whitelist: ['auth', 'question', 'video'],
+      whitelist: ['auth', 'question', 'video', 'config'],
     },
     reducers
   );
