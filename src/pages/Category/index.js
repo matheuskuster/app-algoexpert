@@ -47,7 +47,7 @@ export default function Category({ navigation }) {
   );
 
   useEffect(() => {
-    dispatch(historyRequest(`Browsed through ${category.name} questions`));
+    dispatch(historyRequest(`Browsed through ${category.name} questions.`));
   }, [category, dispatch]);
 
   return (

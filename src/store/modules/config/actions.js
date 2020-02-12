@@ -4,3 +4,10 @@ export function historyRequest(payload) {
     payload,
   };
 }
+
+export function deleteHistory(payload) {
+  return {
+    type: '@history/DELETE',
+    payload,
+  };
+}
