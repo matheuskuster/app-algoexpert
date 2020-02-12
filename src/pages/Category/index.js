@@ -1,8 +1,11 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
 import { ThemeProvider } from 'styled-components';
+import { useDispatch } from 'react-redux';
 
 import themes from '~/util/themes';
+
+import { historyRequest } from '~/store/modules/config/actions';
 
 import {
   Container,
@@ -28,6 +31,8 @@ import {
 } from './styles';
 
 export default function Category({ navigation }) {
+  const dispatch = useDispatch();
+
   const category = useMemo(() => navigation.getParam('category'), [navigation]);
   const questions = useMemo(
     () => category.questions.sort((a, b) => a.Difficulty > b.Difficulty),
@@ -40,6 +45,10 @@ export default function Category({ navigation }) {
     () => questions.filter(question => question.Metadata.completed).length,
     [questions]
   );
+
+  useEffect(() => {
+    dispatch(historyRequest(`Browsed through ${category.name} questions`));
+  }, [category, dispatch]);
 
   return (
     <Container>

@@ -85,7 +85,7 @@ export default function Menu({ navigation }) {
           />
         </Option>
 
-        <Option>
+        <Option onPress={() => navigation.navigate('History')}>
           <Left>
             <MaterialIcons
               name="history"

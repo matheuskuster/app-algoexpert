@@ -1,6 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Alert } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
+import { useDispatch } from 'react-redux';
+
+import { historyRequest } from '~/store/modules/config/actions';
 
 import topics from '~/../assets/data/topics';
 
@@ -21,6 +24,8 @@ import {
 } from './styles';
 
 export default function Help({ navigation }) {
+  const dispatch = useDispatch();
+
   const nameRef = useRef(null);
   const emailRef = useRef(null);
   const messageRef = useRef(null);
@@ -39,10 +44,15 @@ export default function Help({ navigation }) {
       setName('');
       setEmail('');
       setMessage('');
+      dispatch(historyRequest('Sent a question through the Contact Us Form.'));
     } else {
       Alert.alert('Please fill all the fields.');
     }
   }
+
+  useEffect(() => {
+    dispatch(historyRequest('Checked the Frequently Asked Questions.'));
+  }, [dispatch]);
 
   return (
     <Container>

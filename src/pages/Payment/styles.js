@@ -7,7 +7,6 @@ export const Container = styled(SafeAreaView).attrs({
     bottom: 'never',
   },
 })`
-  flex: 1;
   background: #f6f9fc;
 `;
 

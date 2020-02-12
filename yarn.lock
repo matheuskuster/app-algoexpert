@@ -2542,6 +2542,11 @@ dargs@^4.0.1:
   dependencies:
     number-is-nan "^1.0.0"
 
+date-fns@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.9.0.tgz#d0b175a5c37ed5f17b97e2272bbc1fa5aec677d2"
+  integrity sha512-khbFLu/MlzLjEzy9Gh8oY1hNt/Dvxw3J6Rbc28cVoYWQaC1S3YI4xwkF9ZWcjDLscbZlY9hISMr66RFzZagLsA==
+
 dayjs@^1.8.15:
   version "1.8.19"
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.19.tgz#5117dc390d8f8e586d53891dbff3fa308f51abfe"

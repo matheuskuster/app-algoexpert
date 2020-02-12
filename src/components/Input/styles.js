@@ -18,7 +18,7 @@ export const StyledInput = styled.TextInput.attrs({
   background: #fff;
   color: #02203c;
   font-size: 16px;
-  flex: 1;
+
   padding: 15px 10px;
   border-radius: 4px;
   min-height: ${props => (props.multiline ? '160px' : '0px')};

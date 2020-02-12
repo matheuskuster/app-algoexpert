@@ -138,7 +138,7 @@ export const HintsContent = styled(Animated.View)`
 `;
 
 export const Hint = styled.View`
-  padding: 20px;
+  margin: ${props => (props.last ? '20px' : '20px 20px 0 20px')};
 `;
 
 export const HintTitle = styled.Text`
