@@ -33,10 +33,7 @@ export const Subtitle = styled.Text`
 
 export const StyledList = styled.FlatList`
   margin-top: 20px;
-  padding-bottom: 20px;
-  flex: 1;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 0px 20px 20px 20px;
 `;
 
 export const FinalComponent = styled.View`

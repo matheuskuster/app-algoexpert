@@ -146,7 +146,15 @@ export default function Question({ navigation }) {
             }),
           }}
         >
-          <Icon name={name} size={80} color="#f6f9fc" />
+          <Icon
+            name={name}
+            size={80}
+            color="#f6f9fc"
+            style={{
+              marginLeft: 20,
+              marginTop: 20,
+            }}
+          />
         </Category>
         <QuestionData
           style={{
