@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState, useMemo } from 'react';
 import { Animated } from 'react-native';
-import { useSelector } from 'react-redux';
-
+import { useSelector, useDispatch } from 'react-redux';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import * as Font from 'expo-font';
+
+import { setReload } from '~/store/modules/config/actions';
 
 import logo from '~/../assets/logo.png';
 
@@ -32,7 +33,13 @@ import {
 } from './styles';
 
 export default function Home({ navigation }) {
+  const dispatch = useDispatch();
+
   const favoriteQuestions = useSelector(state => state.question.favorites);
+  const { showFavorites, difficulty, reload } = useSelector(
+    state => state.config
+  );
+
   const [questions, setQuestions] = useState([]);
   const [experienceQuestions, setExperienceQuestions] = useState([]);
   const [categories, setCategories] = useState(null);
@@ -67,64 +74,68 @@ export default function Home({ navigation }) {
     loadFont();
   }, []);
 
-  useEffect(() => {
-    async function fetchData() {
-      setLoading(true);
-      const response = await api.get('/problems/v1/summary');
-      const categoriesDraft = {};
+  async function fetchData() {
+    setLoading(true);
+    const response = await api.get('/problems/v1/summary');
+    const categoriesDraft = {};
 
-      const data = await response.data.Problems.map(question => ({
-        ...question,
-        formattedDifficulty: formatDifficulty(question),
-      }));
+    const data = await response.data.Problems.map(question => ({
+      ...question,
+      formattedDifficulty: formatDifficulty(question),
+    }));
 
-      data.forEach(question => {
-        if (categoriesDraft[question.Category]) {
-          categoriesDraft[question.Category].questions.push(question);
-        } else {
-          categoriesDraft[question.Category] = {
-            questions: [],
-            icon: formatCategoryIcon(question.Category),
-            name: question.Category,
-          };
+    data.forEach(question => {
+      if (categoriesDraft[question.Category]) {
+        categoriesDraft[question.Category].questions.push(question);
+      } else {
+        categoriesDraft[question.Category] = {
+          questions: [],
+          icon: formatCategoryIcon(question.Category),
+          name: question.Category,
+        };
 
-          categoriesDraft[question.Category].questions.push(question);
-        }
-      });
-
-      setCategories(categoriesDraft);
-      setQuestions(data);
-
-      async function loadDataStructures() {
-        const dataStructuresResponse = await api.get(
-          'problems/v1/datastructures'
-        );
-
-        const formattedData = dataStructuresResponse.data.datastructures.map(
-          datastructure => ({
-            ...datastructure,
-            formattedThumbnail: datastructure.thumbnail_url.split('.webp')[0],
-          })
-        );
-
-        setDataStructures(formattedData);
-        setLoading(false);
+        categoriesDraft[question.Category].questions.push(question);
       }
+    });
 
-      loadDataStructures();
+    setCategories(categoriesDraft);
+    setQuestions(data);
+
+    async function loadDataStructures() {
+      const dataStructuresResponse = await api.get(
+        'problems/v1/datastructures'
+      );
+
+      const formattedData = dataStructuresResponse.data.datastructures.map(
+        datastructure => ({
+          ...datastructure,
+          formattedThumbnail: datastructure.thumbnail_url.split('.webp')[0],
+        })
+      );
+
+      setDataStructures(formattedData);
+      setLoading(false);
     }
 
-    fetchData();
-  }, []);
+    loadDataStructures();
+  }
+
+  useEffect(() => {
+    if (reload) {
+      fetchData();
+    }
+
+    dispatch(setReload());
+  }, [reload, dispatch]);
 
   useEffect(() => {
     const data = questions
-      .filter(question => question.Difficulty === 1)
+      .filter(question => question.Difficulty === difficulty)
       .sort(question => !question.Available)
       .slice(0, 10);
 
     setExperienceQuestions(data);
-  }, [questions]);
+  }, [questions, difficulty]);
 
   useEffect(() => {
     if (!loading && fontLoaded) {
@@ -238,7 +249,7 @@ export default function Home({ navigation }) {
               }
             />
 
-            {favoriteQuestions.length > 0 && (
+            {favoriteQuestions.length > 0 && showFavorites && (
               <List
                 data={favoriteQuestions}
                 horizontal

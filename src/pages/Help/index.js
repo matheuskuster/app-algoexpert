@@ -3,7 +3,7 @@ import { Alert } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { useDispatch } from 'react-redux';
 
-import { historyRequest } from '~/store/modules/config/actions';
+import { historyPush } from '~/store/modules/config/actions';
 
 import topics from '~/../assets/data/topics';
 
@@ -44,14 +44,14 @@ export default function Help({ navigation }) {
       setName('');
       setEmail('');
       setMessage('');
-      dispatch(historyRequest('Sent a question through the Contact Us Form.'));
+      dispatch(historyPush('Sent a question through the Contact Us Form.'));
     } else {
       Alert.alert('Please fill all the fields.');
     }
   }
 
   useEffect(() => {
-    dispatch(historyRequest('Checked the Frequently Asked Questions.'));
+    dispatch(historyPush('Checked the Frequently Asked Questions.'));
   }, [dispatch]);
 
   return (

@@ -11,7 +11,7 @@ import formattedLanguage from '~/util/language';
 import themes from '~/util/themes';
 import categoryIcon from '~/util/category';
 
-import { historyRequest } from '~/store/modules/config/actions';
+import { historyPush } from '~/store/modules/config/actions';
 
 import {
   Header,
@@ -82,7 +82,7 @@ export default function Question({ navigation }) {
 
       setQuestionData(data);
       setLoading(false);
-      dispatch(historyRequest(`Saw ${question.Name} description.`));
+      dispatch(historyPush(`Saw ${question.Name} description.`));
     }
 
     fetchQuestionData();

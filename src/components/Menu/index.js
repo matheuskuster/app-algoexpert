@@ -69,7 +69,7 @@ export default function Menu({ navigation }) {
           />
         </Option>
 
-        <Option>
+        <Option onPress={() => navigation.navigate('Settings')}>
           <Left>
             <MaterialCommunityIcons
               name="settings-outline"

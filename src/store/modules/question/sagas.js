@@ -1,13 +1,13 @@
 import { takeLatest, put, all } from 'redux-saga/effects';
 
-import { historyRequest } from '../config/actions';
+import { historyPush } from '../config/actions';
 
 export function* favoriteQuestion({ payload }) {
-  yield put(historyRequest(`Marked ${payload.Name} question as favorite.`));
+  yield put(historyPush(`Marked ${payload.Name} question as favorite.`));
 }
 
 export function* unfavoriteQuestion({ payload }) {
-  yield put(historyRequest(`Unmarked ${payload.Name} question as favorite.`));
+  yield put(historyPush(`Unmarked ${payload.Name} question as favorite.`));
 }
 
 export default all([

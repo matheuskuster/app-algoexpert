@@ -26,12 +26,20 @@ import {
 export default function History({ navigation }) {
   const dispatch = useDispatch();
   const maxHistoryLength = useSelector(state => state.config.maxHistory);
+  const isEnabled = useSelector(state => state.config.recordHistory);
   const history = useSelector(state =>
     state.config.history.map(h => ({
       ...h,
-      formattedTime: formatDistance(h.timestamp, new Date()),
+      formattedTime: formatDistance(h.time, new Date()),
     }))
   );
+  const actualHistoryLength = history.length;
+
+  if (history.length > maxHistoryLength) {
+    for (let i = 0; i < actualHistoryLength - maxHistoryLength; i += 1) {
+      history.pop();
+    }
+  }
 
   return (
     <Container>
@@ -39,11 +47,11 @@ export default function History({ navigation }) {
         <Header
           navigation={navigation}
           title="History"
-          description={`Showing ${
+          description={`${!isEnabled ? 'History is disabled -' : ''} Showing ${
             history.length < maxHistoryLength
               ? history.length
               : maxHistoryLength
-          } of ${history.length} results`}
+          } of ${actualHistoryLength} results`}
           option={{
             icon: (
               <MaterialCommunityIcons
@@ -73,7 +81,7 @@ export default function History({ navigation }) {
         {history.length > 0 ? (
           <HistoryList>
             {history.map(h => (
-              <HistoryComponent key={h.timestamp}>
+              <HistoryComponent key={h.time}>
                 <Text>{h.content}</Text>
                 <Time>{h.formattedTime}</Time>
               </HistoryComponent>
@@ -94,7 +102,9 @@ export default function History({ navigation }) {
               It seems there&apos;s nothing to show here
             </NotFoundText>
             <NotFoundAdvice>
-              Go ahead and do something in the app :)
+              {isEnabled
+                ? 'Go ahead and do something in the app :)'
+                : 'Enable history record at Settings.'}
             </NotFoundAdvice>
           </NotFoundView>
         )}

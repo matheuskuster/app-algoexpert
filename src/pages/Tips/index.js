@@ -3,7 +3,7 @@ import { ActivityIndicator } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useDispatch } from 'react-redux';
 
-import { historyRequest } from '~/store/modules/config/actions';
+import { historyPush } from '~/store/modules/config/actions';
 
 import api from '~/services/api';
 
@@ -32,7 +32,7 @@ export default function Tips({ navigation }) {
 
       setTips(response.data);
       setLoading(false);
-      dispatch(historyRequest('Saw some Tips & Tricks.'));
+      dispatch(historyPush('Saw some Tips & Tricks.'));
     }
 
     loadTips();
