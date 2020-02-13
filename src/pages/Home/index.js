@@ -121,6 +121,10 @@ export default function Home({ navigation }) {
   }
 
   useEffect(() => {
+    fetchData();
+  }, []);
+
+  useEffect(() => {
     if (reload) {
       fetchData();
     }
