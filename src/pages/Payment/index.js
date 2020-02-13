@@ -3,7 +3,7 @@ import { Alert, Switch } from 'react-native';
 import { EvilIcons } from '@expo/vector-icons';
 import { useDispatch } from 'react-redux';
 
-import { historyRequest } from '~/store/modules/config/actions';
+import { historyPush } from '~/store/modules/config/actions';
 
 import Input from '~/components/Input';
 import Header from '~/components/Header';
@@ -60,7 +60,7 @@ export default function Payment({ navigation }) {
         `The following promo code has been applied to your account: '${promoCode}'`
       );
       dispatch(
-        historyRequest(`Applied the promo code '${promoCode}' to your account.`)
+        historyPush(`Applied the promo code '${promoCode}' to your account.`)
       );
     } else {
       setApplied(false);

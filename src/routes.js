@@ -12,6 +12,7 @@ import Category from './pages/Category';
 import Tips from './pages/Tips';
 import QuestionsList from './pages/QuestionsList';
 import History from './pages/History';
+import Settings from './pages/Settings';
 
 export default (signedIn = false) =>
   createAppContainer(
@@ -28,6 +29,7 @@ export default (signedIn = false) =>
             Tips,
             QuestionsList,
             History,
+            Settings,
           },
           { headerMode: 'none' }
         ),

@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import themes from '~/util/themes';
 
-import { historyRequest } from '~/store/modules/config/actions';
+import { historyPush } from '~/store/modules/config/actions';
 
 import {
   Container,
@@ -47,7 +47,7 @@ export default function Category({ navigation }) {
   );
 
   useEffect(() => {
-    dispatch(historyRequest(`Browsed through ${category.name} questions.`));
+    dispatch(historyPush(`Browsed through ${category.name} questions.`));
   }, [category, dispatch]);
 
   return (

@@ -7,7 +7,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { ThemeProvider } from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { historyRequest } from '~/store/modules/config/actions';
+import { historyPush } from '~/store/modules/config/actions';
 
 import {
   Container,
@@ -66,7 +66,7 @@ export default function CodeSolution({
   useEffect(() => {
     setSolutionIndex(1);
     dispatch(
-      historyRequest(
+      historyPush(
         `Accessed the ${solutions[language].formattedLanguage} solution for ${question.Name}.`
       )
     );
