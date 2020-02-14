@@ -53,22 +53,6 @@ export default function Menu({ navigation }) {
           />
         </Option>
 
-        <Option>
-          <Left>
-            <MaterialIcons
-              name="person-outline"
-              size={24}
-              color="rgba(255, 255, 255, 0.8)"
-            />
-            <OptionText>Profile</OptionText>
-          </Left>
-          <MaterialIcons
-            name="chevron-right"
-            size={24}
-            color="rgba(255, 255, 255, 0.8)"
-          />
-        </Option>
-
         <Option onPress={() => navigation.navigate('Settings')}>
           <Left>
             <MaterialCommunityIcons

@@ -4,7 +4,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 import { Container, Label, CategoryButton, CategoryText } from './styles';
 
-import categories from '~/../assets/data/categories';
+import categories from '~/assets/data/categories';
 
 export default function CategoryInput({ setCategory }) {
   const [opened, setOpened] = useState(false);

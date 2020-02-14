@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import { historyPush } from '~/store/modules/config/actions';
 
-import topics from '~/../assets/data/topics';
+import topics from '~/assets/data/topics';
 
 import FAQBox from '~/components/FAQBox';
 import Header from '~/components/Header';

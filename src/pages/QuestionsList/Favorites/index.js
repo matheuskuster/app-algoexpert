@@ -6,7 +6,7 @@ import LottieView from 'lottie-react-native';
 import categoryIcon from '~/util/category';
 import themes from '~/util/themes';
 
-import notFound from '~/../assets/not-found.json';
+import notFound from '~/assets/not-found.json';
 
 import {
   Container,

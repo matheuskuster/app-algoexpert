@@ -9,7 +9,7 @@ import Header from '~/components/Header';
 
 import { deleteHistory } from '~/store/modules/config/actions';
 
-import notFound from '~/../assets/not-found.json';
+import notFound from '~/assets/not-found.json';
 
 import {
   Container,
@@ -28,10 +28,12 @@ export default function History({ navigation }) {
   const maxHistoryLength = useSelector(state => state.config.maxHistory);
   const isEnabled = useSelector(state => state.config.recordHistory);
   const history = useSelector(state =>
-    state.config.history.map(h => ({
-      ...h,
-      formattedTime: formatDistance(h.time, new Date()),
-    }))
+    state.config.history.map(h => {
+      return {
+        ...h,
+        formattedTime: formatDistance(new Date(h.time), new Date()),
+      };
+    })
   );
   const actualHistoryLength = history.length;
 

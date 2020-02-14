@@ -10,7 +10,7 @@ import {
   changeDifficulty,
 } from '~/store/modules/config/actions';
 
-import languages from '~/../assets/data/languages';
+import languages from '~/assets/data/languages';
 import formatDifficulty from '~/util/question';
 
 import Header from '~/components/Header';
@@ -42,13 +42,11 @@ export default function Settings({ navigation }) {
   const [historyModalVisible, setHistoryModalVisible] = useState(false);
   const [difficultyModalVisible, setDifficultyModalVisible] = useState(false);
 
-  const {
-    showFavorites,
-    recordHistory,
-    favoriteLanguage,
-    maxHistory,
-    difficulty,
-  } = useSelector(state => state.config);
+  const showFavorites = useSelector(state => state.config.showFavorites);
+  const recordHistory = useSelector(state => state.config.recordHistory);
+  const favoriteLanguage = useSelector(state => state.config.favoriteLanguage);
+  const maxHistory = useSelector(state => state.config.maxHistory);
+  const difficulty = useSelector(state => state.config.difficulty);
 
   function dismissModals() {
     setLanguageModalVisible(false);

@@ -1,6 +1,6 @@
 export default [
   {
-    title: 'Buying AlgoExpert',
+    title: 'Purchasing',
     questions: [
       {
         question:

@@ -1,13 +1,13 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState, useMemo } from 'react';
-import { Animated } from 'react-native';
+import { Animated, StatusBar } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import * as Font from 'expo-font';
 
 import { setReload } from '~/store/modules/config/actions';
 
-import logo from '~/../assets/logo.png';
+import logo from '~/assets/logo.png';
 
 import api from '~/services/api';
 
@@ -36,9 +36,9 @@ export default function Home({ navigation }) {
   const dispatch = useDispatch();
 
   const favoriteQuestions = useSelector(state => state.question.favorites);
-  const { showFavorites, difficulty, reload } = useSelector(
-    state => state.config
-  );
+  const showFavorites = useSelector(state => state.config.showFavorites);
+  const difficulty = useSelector(state => state.config.difficulty);
+  const reload = useSelector(state => state.config.reload);
 
   const [questions, setQuestions] = useState([]);
   const [experienceQuestions, setExperienceQuestions] = useState([]);
@@ -62,10 +62,10 @@ export default function Home({ navigation }) {
   useEffect(() => {
     async function loadFont() {
       await Font.loadAsync({
-        Jura: require('../../../assets/fonts/Jura.ttf'),
-        JuraBold: require('../../../assets/fonts/Jura-Bold.ttf'),
-        OpenSans: require('../../../assets/fonts/OpenSans-Regular.ttf'),
-        OpenSansBold: require('../../../assets/fonts/OpenSans-Bold.ttf'),
+        Jura: require('~/assets/fonts/Jura.ttf'),
+        JuraBold: require('~/assets/fonts/Jura-Bold.ttf'),
+        OpenSans: require('~/assets/fonts/OpenSans-Regular.ttf'),
+        OpenSansBold: require('~/assets/fonts/OpenSans-Bold.ttf'),
       });
 
       setFontLoaded(true);
@@ -333,6 +333,14 @@ export default function Home({ navigation }) {
           </Header>
 
           <Menu navigation={navigation} />
+
+          <StatusBar
+            hidden={noHeader}
+            barStyle="light-content"
+            backgroundColor="#02203c"
+            animated
+            showHideTransition="slide"
+          />
         </Container>
       ) : (
         <Loading />

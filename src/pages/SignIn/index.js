@@ -3,8 +3,8 @@ import { Animated } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import * as Font from 'expo-font';
 
-import logo from '../../../assets/logo.png';
-import google_icon from '../../../assets/google-icon.png';
+import logo from '~/assets/logo.png';
+import google_icon from '~/assets/google-icon.png';
 
 import Button from './Button';
 import Background from '~/components/Background';
@@ -63,7 +63,7 @@ export default function SignIn() {
   useEffect(() => {
     async function loadFont() {
       await Font.loadAsync({
-        Jura: require('../../../assets/fonts/Jura.ttf'),
+        Jura: require('~/assets/fonts/Jura.ttf'),
       });
 
       setFontLoaded(true);

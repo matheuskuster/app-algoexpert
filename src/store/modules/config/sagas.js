@@ -1,6 +1,6 @@
 import { takeLatest, put, all } from 'redux-saga/effects';
 
-import languages from '~/../assets/data/languages';
+import languages from '~/assets/data/languages';
 
 import formatDifficulty from '~/util/question';
 
