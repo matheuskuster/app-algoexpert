@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "AlgoExpert",
-    "slug": "algoexpert",
+    "name": "AlgoExpert's Mobile App",
+    "slug": "app-algoexpert",
     "privacy": "public",
     "sdkVersion": "36.0.0",
     "platforms": [
