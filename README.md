@@ -14,7 +14,7 @@ AlgoExpert's Mobile App was developed using Facebook's <a href="https://github.c
 
 Soon.
 
-# Execute
+# Running
 
 Please install the <a href="https://expo.io/tools#client">Expo Tools</a> at your phone and scan the QR Code bellow to run the app.
 

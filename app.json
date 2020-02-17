@@ -4,29 +4,23 @@
     "slug": "app-algoexpert",
     "privacy": "public",
     "sdkVersion": "36.0.0",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
+    "platforms": ["ios", "android"],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/assets/icon.png",
+    "icon": "./src/assets/logo.png",
     "splash": {
       "image": "./src/assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#02203c"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
-    "description": "",
+    "description": "It's a mobile version of the AlgoExpert platform. This project was created for the Software Engineering Project CONTEST - Winter 2020 from Clément Mihailescu & AlgoExpert.",
     "githubUrl": "https://github.com/matheuskuster/app-algoexpert"
   }
 }
