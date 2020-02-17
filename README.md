@@ -1,3 +1,7 @@
+<div style="width: 100%; display: flex; align-items: center; justify-content: center">
+  <img width="350" src="./.github/github_icon.png" />
+</div>
+
 # AlgoExpert's Mobile App
 
 It's a mobile version of the <a href="https://www.algoexpert.io/">AlgoExpert</a> platform. This project was created for the <a href="https://www.youtube.com/watch?v=KVyMIEwI7uw&t=2s">Software Engineering Project CONTEST - Winter 2020</a> from <a href="https://github.com/clementmihailescu">Clément Mihailescu</a> & AlgoExpert.
