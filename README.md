@@ -1,6 +1,6 @@
-<div style="width: 100%; display: flex; align-items: center; justify-content: center">
-  <img width="350" src="./.github/github_icon.png" />
-</div>
+<p align="center">
+  <img width="350" src="./.github/github_icon.png" alt="Icon" />
+</p>
 
 # AlgoExpert's Mobile App
 
