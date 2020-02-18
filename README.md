@@ -4,6 +4,8 @@
 
 # AlgoExpert's Mobile App
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3c645edd8f9b4853a00e4807ff70c12c)](https://app.codacy.com/manual/matheuskuster/app-algoexpert?utm_source=github.com&utm_medium=referral&utm_content=matheuskuster/app-algoexpert&utm_campaign=Badge_Grade_Dashboard)
+
 It's a mobile version of the <a href="https://www.algoexpert.io/">AlgoExpert</a> platform. This project was created for the <a href="https://www.youtube.com/watch?v=KVyMIEwI7uw&t=2s">Software Engineering Project CONTEST - Winter 2020</a> from <a href="https://github.com/clementmihailescu">Clément Mihailescu</a> & AlgoExpert.
 
 # Notice
