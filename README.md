@@ -1,7 +1,7 @@
 <h1 align="center">
   <img width="350" src="./.github/github_icon.png" alt="Icon" />
 
-AlgoExpert's Moble App
+AlgoExpert's Mobile App
 
 </h1>
 
