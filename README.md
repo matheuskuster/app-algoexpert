@@ -35,7 +35,7 @@ Please install the <a href="https://expo.io/tools#client">Expo Tools</a> at your
 
 <img src="./.github/expo_qrcode.png" />
 
-#### :warning: Important:
+#### :warning: Important
 
 All the development proccess until here was tested just in <b>iOS devices</b>, so I can't guarantee a properly behavior at Android devices yet. But feel free to try it yourself.
 
@@ -46,7 +46,6 @@ To clone and run this application in your machine, you'll need [Git](https://git
 ```bash
 # Clone this repository.
 git clone https://github.com/matheuskuster/app-algoexpert.git
-
 cd app-algoexpert
 
 # Install dependencies
