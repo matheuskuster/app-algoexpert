@@ -21,15 +21,15 @@ AlgoExpert's Mobile App
   <img alt="GitHub top language" src="https://img.shields.io/github/last-commit/matheuskuster/app-algoexpert.svg">
 </p>
 
-# :exclamation: Notice
+## :exclamation: Notice
 
 All the resources and assets used in the app are AlgoExpert's property and all its rights are reserved to them. If you see any trouble of me using your resources, please contact me. Thanks!
 
-# :information_source: About
+## :information_source: About
 
 AlgoExpert's Mobile App was developed using Facebook's <a href="https://github.com/facebook/react-native">React Native</a> framework and <a href="https://expo.io/">Expo tools</a>. It's objective is to deliver almost the same experience of using the platform at a web browser. The user can do the same things, except coding. But to compensate it, the app brings some new features, as favorite questions.
 
-# :iphone: Running
+## :iphone: Running
 
 Please install the <a href="https://expo.io/tools#client">Expo Tools</a> at your phone and scan the QR Code bellow to run the app.
 
@@ -39,7 +39,7 @@ Please install the <a href="https://expo.io/tools#client">Expo Tools</a> at your
 
 All the development proccess until here was tested just in <b>iOS devices</b>, so I can't guarantee a properly behavior at Android devices yet. But feel free to try it yourself.
 
-# :arrow_down: Installation
+## :arrow_down: Installation
 
 To clone and run this application in your machine, you'll need [Git](https://git-scm.com), [Node.js v10.16][nodejs] or higher + [Yarn v1.13][yarn] or higher and [Expo CLI v.3.13.1](https://expo.io) or higher installed on your computer. From your command line:
 
