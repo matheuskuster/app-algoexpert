@@ -50,7 +50,6 @@ All the resources and assets used in the app are AlgoExpert's property and all i
   <img src="https://media.giphy.com/media/idjtgDfHOX6pUDzbRR/giphy.gif" />
 </p>
 </details>
-<br/>
 <p>Or click <a href="https://www.youtube.com/watch?v=p7fC7rHYuZ4">here</a> to watch the showcase video at Youtube.</p>
 
 ## :exclamation: About
@@ -69,7 +68,7 @@ All the development proccess until here was tested just in <b>iOS devices</b>, s
 
 ## :information_source: Installation
 
-To clone and run this application in your machine, you'll need [Git](https://git-scm.com), [Node.js v13.5](nodejs) or higher, [Yarn v1.21](yarn) or higher and [Expo CLI v.3.13](https://expo.io) or higher installed on your computer. From your command line:
+To clone and run this application in your machine, you'll need [Git](https://git-scm.com), [Node.js v13.5](https://nodejs.org/en/) or higher, [Yarn v1.21](https://yarnpkg.com/) or higher and [Expo CLI v.3.13](https://expo.io) or higher installed on your computer. From your command line:
 
 ```bash
 # Clone this repository.
