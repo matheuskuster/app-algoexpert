@@ -34,7 +34,7 @@ All the resources and assets used in the app are AlgoExpert's property and all i
 </p>
 
 <details>
-<summary>See more</summary>
+<summary>See more GIFs</summary>
 <br/>
 <p align="center">
   <img src="https://media.giphy.com/media/WToG9xNiQrol8Bqws4/giphy.gif" />
@@ -50,6 +50,8 @@ All the resources and assets used in the app are AlgoExpert's property and all i
   <img src="https://media.giphy.com/media/idjtgDfHOX6pUDzbRR/giphy.gif" />
 </p>
 </details>
+<br/>
+<p>Or click <a href="https://www.youtube.com/watch?v=p7fC7rHYuZ4">here</a> to watch the showcase video at Youtube.</p>
 
 ## :exclamation: About
 
