@@ -56,6 +56,24 @@ All the resources and assets used in the app are AlgoExpert's property and all i
 
 AlgoExpert's Mobile App was developed using Facebook's <a href="https://github.com/facebook/react-native">React Native</a> framework and <a href="https://expo.io/">Expo tools</a>. Its objective is to deliver almost the same experience of using the platform at a web browser. The user can do the same things, except coding. But to compensate it, the app brings some new features, as favorite questions.
 
+## :rocket: Technologies
+
+This project was developed with the following technologies:
+
+- [ReactJS](https://reactjs.org/)
+- [React Native](https://facebook.github.io/react-native/)
+- [Expo](https://expo.io)
+- [Redux](https://redux.js.org/)
+- [Redux-Saga](https://redux-saga.js.org/)
+- [React Navigation](https://reactnavigation.org/)
+- [Axios](https://github.com/axios/axios)
+- [Immer](https://github.com/immerjs/immer)
+- [Lottie](https://www.google.com/search?q=lottie&oq=lottie&aqs=chrome..69i57j69i59j0l2j69i60l4.2830j0j4&sourceid=chrome&ie=UTF-8)
+- [styled-components](https://www.styled-components.com/)
+- [date-fns](https://date-fns.org/)
+- [Reactotron](https://infinite.red/reactotron)
+- [VS Code](https://code.visualstudio.com/) with [EditorConfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig) and [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+
 ## :running: Running
 
 Please install the <a href="https://expo.io/tools#client">Expo Tools</a> at your phone and scan the QR Code bellow to run the app.
@@ -81,3 +99,7 @@ yarn install
 # Run it and follow Expo instructions.
 expo start
 ```
+
+---
+
+Made with ♥ by Matheus Kuster :wave: [Get in touch!](https://www.linkedin.com/in/matheus-kuster/)
