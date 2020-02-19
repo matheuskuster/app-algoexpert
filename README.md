@@ -31,10 +31,12 @@ All the resources and assets used in the app are AlgoExpert's property and all i
   <img src="https://media.giphy.com/media/Q5LMez3DGTSCyyCYDN/giphy.gif" />
   <img src="https://media.giphy.com/media/Vzwdj4PUgRGyMhUtt4/giphy.gif" />
   <img src="https://media.giphy.com/media/Ws9Dqq8xrab9IBNHhM/giphy.gif" />
+</p>
 
 <details>
 <summary>See more</summary>
 <br/>
+<p align="center">
   <img src="https://media.giphy.com/media/WToG9xNiQrol8Bqws4/giphy.gif" />
   <img src="https://media.giphy.com/media/kILO92JzoCaxx0tjwE/giphy.gif" />
   <img src="https://media.giphy.com/media/Qvw188M3RJwLaF9LeI/giphy.gif" />
